@@ -4,7 +4,21 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
-const INPUT = path.join(ROOT, "VSOP87D.ear.txt");
+const inputFile = process.argv[2];
+
+if (!inputFile) {
+
+    console.error("Usage:");
+
+    console.error("");
+
+    console.error("node scripts/generate-vsop87.js VSOP87D.ear");
+
+    process.exit(1);
+
+}
+
+const INPUT = path.join(ROOT, inputFile);
 
 if (!fs.existsSync(INPUT)) {
     console.error("VSOP87D.ear.txt not found.");
@@ -17,6 +31,24 @@ const lines = text
     .split(/\r?\n/)
     .map(line => line.trim())
     .filter(line => line.length);
+
+
+const header = lines[0];
+
+const match = header.match(/VSOP87 VERSION D4\s+([A-Z]+)/);
+
+if (!match) {
+
+    console.error("Planet name not found.");
+
+    process.exit(1);
+
+}
+
+const PLANET = match[1];
+
+console.log("Planet:", PLANET);
+
 
 const sections = {
     L: [[], [], [], [], [], []],
@@ -152,12 +184,15 @@ const outputFile = path.join(
     "src",
     "astronomy",
     "vsop87",
-    "earth.ts"
+    `${PLANET.toLowerCase()}.ts`
 );
 
 fs.writeFileSync(
     outputFile,
-    generatePlanet("EARTH", sections)
+    generatePlanet(
+    PLANET,
+    sections
+)
 );
 
 console.log("");

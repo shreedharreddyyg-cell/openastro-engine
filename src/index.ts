@@ -3,7 +3,7 @@ import { calculateSunPosition } from "./astronomy/sun";
 import { calculateMeanObliquity } from "./astronomy/obliquity";
 import { eclipticToEquatorial } from "./coordinates/equatorial";
 
-import { EARTH } from "./astronomy/vsop87/earth";
+import { PLANETS } from "./astronomy/vsop87";
 import { calculatePlanet } from "./astronomy/vsop87/position";
 
 import { radiansToDegrees } from "./math/angle";
@@ -64,15 +64,34 @@ console.log("");
 /**
  * VSOP87 Earth
  */
-const earth = calculatePlanet(EARTH, jd);
+const earth = calculatePlanet(
+    PLANETS.EARTH,
+    jd
+);
 
-console.log("VSOP87 Earth");
+const mercury = calculatePlanet(
+    PLANETS.MERCURY,
+    jd
+);
+
+console.log("Earth");
+
 console.log({
-    longitudeRadians: earth.longitude,
     longitudeDegrees: radiansToDegrees(earth.longitude),
     latitudeDegrees: radiansToDegrees(earth.latitude),
     radiusAU: earth.radius
 });
+
+console.log("");
+
+console.log("Mercury");
+
+console.log({
+    longitudeDegrees: radiansToDegrees(mercury.longitude),
+    latitudeDegrees: radiansToDegrees(mercury.latitude),
+    radiusAU: mercury.radius
+});
+
 console.log("");
 
 console.log("========== Done ==========");
