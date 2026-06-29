@@ -74,25 +74,16 @@ const mercury = calculatePlanet(
     jd
 );
 
-console.log("Earth");
+for (const [name, planet] of Object.entries(PLANETS)) {
+    const position = calculatePlanet(planet, jd);
 
-console.log({
-    longitudeDegrees: radiansToDegrees(earth.longitude),
-    latitudeDegrees: radiansToDegrees(earth.latitude),
-    radiusAU: earth.radius
-});
+    console.log(name);
 
-console.log("");
+    console.log({
+        longitudeDegrees: radiansToDegrees(position.longitude),
+        latitudeDegrees: radiansToDegrees(position.latitude),
+        radiusAU: position.radius
+    });
 
-console.log("Mercury");
-
-console.log({
-    longitudeDegrees: radiansToDegrees(mercury.longitude),
-    latitudeDegrees: radiansToDegrees(mercury.latitude),
-    radiusAU: mercury.radius
-});
-
-console.log("");
-
-console.log("========== Done ==========");
-console.log("");
+    console.log("");
+}

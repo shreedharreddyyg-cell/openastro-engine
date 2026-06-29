@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "generate:vsop87": "node scripts/generate-vsop87.js",
+    "generate:all": "node scripts/generate-all.js",
     "import:vsop87": "tsx tools/vsop87-import.ts",
     "build": "tsc"
     

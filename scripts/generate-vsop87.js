@@ -21,7 +21,7 @@ if (!inputFile) {
 const INPUT = path.join(ROOT, inputFile);
 
 if (!fs.existsSync(INPUT)) {
-    console.error("VSOP87D.ear.txt not found.");
+    console.error(`Input file not found: ${INPUT}`);
     process.exit(1);
 }
 
@@ -34,6 +34,9 @@ const lines = text
 
 
 const header = lines[0];
+
+console.log("HEADER:");
+console.log(header);
 
 const match = header.match(/VSOP87 VERSION D4\s+([A-Z]+)/);
 
