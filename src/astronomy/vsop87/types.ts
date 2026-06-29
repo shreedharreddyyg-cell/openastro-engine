@@ -1,19 +1,36 @@
 /**
- * One VSOP87 periodic term.
- *
- * A * cos(B + C * t)
+ * OpenAstro Engine
+ * VSOP87 Types
  */
+
 export interface VSOPTerm {
+  A: number;
+  B: number;
+  C: number;
+}
 
-    A: number;
+export type VSOPSeries = VSOPTerm[];
 
-    B: number;
-
-    C: number;
-
+/**
+ * One planet contains
+ * Longitude (L)
+ * Latitude (B)
+ * Radius (R)
+ *
+ * Each has 6 polynomial orders:
+ * 0..5
+ */
+export interface VSOPPlanet {
+  L: VSOPSeries[];
+  B: VSOPSeries[];
+  R: VSOPSeries[];
 }
 
 /**
- * One complete series (L0, L1, R2, etc.)
+ * Final heliocentric position.
  */
-export type VSOPSeries = VSOPTerm[];
+export interface VSOPPosition {
+  longitude: number;
+  latitude: number;
+  radius: number;
+}

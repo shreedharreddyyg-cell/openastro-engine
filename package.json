@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "import:vsop87": "tsx --tsconfig tsconfig.tools.json tools/vsop87-import.ts",
+    "generate:vsop87": "node scripts/generate-vsop87.js",
+    "import:vsop87": "tsx tools/vsop87-import.ts",
     "build": "tsc"
     
   },
