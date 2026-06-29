@@ -1,5 +1,7 @@
 import { evaluateSeries } from "./evaluator";
 
+import { normalizeRadians } from "../../math/angle";
+
 
 import {
   VSOPPlanet,
@@ -36,7 +38,7 @@ function evaluatePolynomial(
 
   }
 
-  return value / 100000000.0;
+  return value;
 }
 
 /**
@@ -52,23 +54,26 @@ export function calculatePlanet(
 
   const t = vsopTime(jd);
 
-  return {
-
-    longitude: evaluatePolynomial(
-      planet.L,
-      t
-    ),
-
-    latitude: evaluatePolynomial(
-      planet.B,
-      t
-    ),
-
-    radius: evaluatePolynomial(
-      planet.R,
-      t
+  const longitude = normalizeRadians(
+    evaluatePolynomial(
+        planet.L,
+        t
     )
+);
 
-  };
+const latitude = evaluatePolynomial(
+    planet.B,
+    t
+);
 
+const radius = evaluatePolynomial(
+    planet.R,
+    t
+);
+
+return {
+    longitude,
+    latitude,
+    radius
+};
 }
