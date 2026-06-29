@@ -1,0 +1,15 @@
+{
+  "name": "openastro-engine",
+  "version": "0.1.0",
+  "description": "Open source astronomy engine",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "import:vsop87": "tsx --tsconfig tsconfig.tools.json tools/vsop87-import.ts",
+    "build": "tsc"
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
