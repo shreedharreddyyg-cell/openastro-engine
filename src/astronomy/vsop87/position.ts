@@ -9,6 +9,8 @@ import {
   VSOPSeries
 } from "./types";
 
+import { SphericalCoordinates } from "../../coordinates/spherical";
+
 /**
  * VSOP87 time
  */
@@ -45,12 +47,9 @@ function evaluatePolynomial(
  * Generic VSOP87 planet.
  */
 export function calculatePlanet(
-
-  planet: VSOPPlanet,
-
-  jd: number
-
-): VSOPPosition {
+    planet: VSOPPlanet,
+    jd: number
+): SphericalCoordinates {
 
   const t = vsopTime(jd);
 

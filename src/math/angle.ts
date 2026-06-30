@@ -40,3 +40,4 @@ export function degreesToRadians(degrees: number): number {
 export function radiansToDegrees(radians: number): number {
     return radians * 180 / Math.PI;
 }
+

@@ -8,6 +8,14 @@ import { calculatePlanet } from "./astronomy/vsop87/position";
 
 import { radiansToDegrees } from "./math/angle";
 
+import {
+    sphericalToCartesian,
+    cartesianToSpherical,
+    subtractVectors
+} from "./astronomy/geocentric";
+
+import { calculateGeocentricPlanet } from "./astronomy/geocentric";
+
 console.log("");
 console.log("========== OpenAstro ==========");
 console.log("");
@@ -74,6 +82,15 @@ const mercury = calculatePlanet(
     jd
 );
 
+
+const mercuryGeo =
+    calculateGeocentricPlanet(
+        PLANETS.MERCURY,
+        jd
+    );
+
+
+
 for (const [name, planet] of Object.entries(PLANETS)) {
     const position = calculatePlanet(planet, jd);
 
@@ -87,3 +104,32 @@ for (const [name, planet] of Object.entries(PLANETS)) {
 
     console.log("");
 }
+
+
+console.log("");
+
+console.log("Mercury Heliocentric");
+
+console.log({
+
+    longitude: radiansToDegrees(mercury.longitude),
+
+    latitude: radiansToDegrees(mercury.latitude),
+
+    radius: mercury.radius
+
+});
+
+console.log("");
+
+console.log("Mercury Geocentric");
+
+console.log({
+
+    longitude: radiansToDegrees(mercuryGeo.longitude),
+
+    latitude: radiansToDegrees(mercuryGeo.latitude),
+
+    radius: mercuryGeo.radius
+
+});
